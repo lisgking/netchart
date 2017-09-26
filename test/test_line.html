@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="esl.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="main" style="width:1000px;height:500px;"></div>
+</body>
+
+<script src="../dist/bundle.js"></script>
+<script>
+    require.config({
+        packages: [
+            {
+                name: 'zrender/src/zrender.jsr',
+                location: 'zrender/src',
+                main: 'zrender'
+            }
+        ]
+    });
+    require(
+        [
+            'zrender',
+            'zrender/graphic/shape/Line',
+            'zrender/container/Group'
+        ],
+        function(zrender, LineShape, Group){
+
+            // 初始化zrender
+            var zr = zrender.init(document.getElementById('main'));
+            var line = new LineShape({
+                shape: {
+                    x1: 30,
+                    y1: 50,
+                    x2: 100,
+                    y2: 50,
+                    ppercente:3,
+                }
+            });
+            zr.add(line);
+        });
+    
+</script>
+</html>

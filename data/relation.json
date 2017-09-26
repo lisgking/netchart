@@ -1,0 +1,253 @@
+{
+    "success": 1,
+    "msg": "",
+    "result": [
+        {
+            "identity":"1",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"1",
+            "to":"2"
+        },
+        {
+            "identity":"2",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"1",
+            "to":"3"
+        },
+        {
+            "identity":"3",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"1",
+            "to":"4"
+        },
+        {
+            "identity":"33",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"1",
+            "to":"33"
+        },
+        {
+            "identity":"6",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"7",
+            "to":"8"
+        },
+        {
+            "identity":"7",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"7",
+            "to":"9"
+        },
+        {
+            "identity":"9",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"7",
+            "to":"10"
+        },
+        {
+            "identity":"10",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"7",
+            "to":"11"
+        },
+        {
+            "identity":"34",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"7",
+            "to":"34"
+        },
+        {
+            "identity":"35",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"7",
+            "to":"35"
+        },
+        {
+            "identity":"11",
+            "relation_name":"所属业务",
+            "lineDash":[2, 6, 2],
+            "from":"12",
+            "to":"7"
+        },
+        {
+            "identity":"12",
+            "relation_name":"所属人物",
+            "lineDash":[2, 6, 2],
+            "from":"12",
+            "to":"1"
+        },
+        {
+            "identity":"13",
+            "relation_name":"所属行业",
+            "lineDash":[2, 6, 2],
+            "from":"12",
+            "to":"13"
+        },{
+            "identity":"14",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"13",
+            "to":"14"
+        },{
+            "identity":"15",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"13",
+            "to":"15"
+        },{
+            "identity":"16",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"13",
+            "to":"16"
+        },{
+            "identity":"17",
+            "relation_name":"所属产品",
+            "lineDash":[2, 6, 2],
+            "from":"12",
+            "to":"17"
+        },{
+            "identity":"18",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"17",
+            "to":"18"
+        },{
+            "identity":"19",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"17",
+            "to":"19"
+        },{
+            "identity":"20",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"17",
+            "to":"20"
+        },{
+            "identity":"36",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"17",
+            "to":"36"
+        },{
+            "identity":"37",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"17",
+            "to":"37"
+        },{
+            "identity":"21",
+            "relation_name":"所属指标",
+            "lineDash":[2, 6, 2],
+            "from":"12",
+            "to":"21"
+        },{
+            "identity":"22",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"21",
+            "to":"22"
+        },{
+            "identity":"23",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"21",
+            "to":"23"
+        },{
+            "identity":"24",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"21",
+            "to":"24"
+        },{
+            "identity":"25",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"21",
+            "to":"25"
+        },{
+            "identity":"26",
+            "relation_name":"所属属性",
+            "lineDash":[2, 6, 2],
+            "from":"12",
+            "to":"26"
+        },{
+            "identity":"27",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"26",
+            "to":"27"
+        },{
+            "identity":"28",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"26",
+            "to":"28"
+        },{
+            "identity":"38",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"26",
+            "to":"38"
+        },{
+            "identity":"39",
+            "relation_name":"",
+            "lineDash":[3, 3],
+            "from":"26",
+            "to":"39"
+        },{
+            "identity":"29",
+            "relation_name":"所属事件",
+            "lineDash":"",
+            "from":"12",
+            "to":"29"
+        },{
+            "identity":"30",
+            "relation_name":"披露",
+            "from":"29",
+            "to":"30"
+        },{
+            "identity":"31",
+            "relation_name":"披露",
+            "from":"29",
+            "to":"31"
+        },{
+            "identity":"32",
+            "relation_name":"核实",
+            "from":"29",
+            "to":"32"
+        },{
+            "identity":"40",
+            "relation_name":"发布",
+            "from":"29",
+            "to":"40"
+        },{
+            "identity":"41",
+            "relation_name":"澄清2016.11.30",
+            "from":"40",
+            "to":"41"
+        },{
+            "identity":"42",
+            "relation_name":"公司重大资产出售",
+            "from":"29",
+            "to":"42"
+        },{
+            "identity":"43",
+            "relation_name":"控股股东回购股票并承若不减持",
+            "from":"29",
+            "to":"43"
+        }
+        
+    ]
+}

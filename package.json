@@ -1,0 +1,27 @@
+{
+  "name": "netchart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --inline --hot",
+    "server": "webpack-dev-server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lisgking/zrender_shape.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "webpack": "^3.5.6",
+    "webpack-dev-server": "^2.8.2",
+    "zrender": "^3.6.1"
+  }
+}
