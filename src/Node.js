@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import util from './util';
+import States from 'zrender/graphic/States';
 import {
     CompanyShape,
     OrganizationShape,
@@ -31,7 +32,7 @@ Node.prototype.draw = function (ctx) {
         ctx.arc(this.posx, this.posy, 20, 0, Math.PI * 2, false);
         return ctx.fill();
     } else {
-        var node = new CompanyShape({
+        var node = this.node = new CompanyShape({
             zlevel:3,
             shape: {
                 cx: this.posx,
@@ -40,24 +41,24 @@ Node.prototype.draw = function (ctx) {
             },
             style: {
                 fill: this.opts.color,
+                opacity:0.5,
                 text: util.strInsert(this.opts.node_name),
+            },
+            states:{
+                hover: {
+                    style: {
+                        opacity:1,
+                    },
+                },
+            },
+            onmouseover: function () {
+                this.states.transitionState('hover');
+            },
+            onmouseout: function () {
+                this.states.transitionState('normal');
             }
         })
         ctx.add(node);
-        // node.on('mouseover', function () {
-        //     console.log(this);
-        //     ctx.addHover(this, {
-        //         fill: 'yellow',
-        //         lineWidth: 10,
-        //         opacity: 1
-        //     });
-        //     // ctx.refresh();
-        // });
-        // node.on('mouseout', function () {
-        //     console.log(this);
-        //     ctx.clearHover(this);
-        //     // ctx.trigger("refresh");
-        // });
     }
 };
 

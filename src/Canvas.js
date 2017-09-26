@@ -8,7 +8,18 @@ import {
 
 function Canvas() {
     var _this = this;
-
+    this.onCanvasMouseup = function (e) {
+        return Canvas.prototype.onCanvasMouseup.apply(_this, arguments);
+    };
+    this.onCanvasMousemove = function (e) {
+        return Canvas.prototype.onCanvasMousemove.apply(_this, arguments);
+    };
+    this.onCanvasMouseover = function (e) {
+        return Canvas.prototype.onCanvasMouseover.apply(_this, arguments);
+    };
+    this.onCanvasMousedown = function (e) {
+        return Canvas.prototype.onCanvasMousedown.apply(_this, arguments);
+    };
     this.draw = function () {
         return Canvas.prototype.draw.apply(_this, arguments);
     };
@@ -21,15 +32,17 @@ function Canvas() {
 }
 
 Canvas.prototype.draw = function () {
+    var self = this;
     this.interval_id;
     var ctx,
         maincanvas = document.getElementById("maincanvas");
     maincanvas.width = this.width;
     maincanvas.height = this.height;
     // ctx = maincanvas.getContext("2d");
-    var ctx = zrender.init(maincanvas);
+    var ctx = this.ctx = zrender.init(maincanvas);
     // ctx.clearRect(0, 0, this.width, this.height);
     this.graph.move();
+
     return this.graph.draw(ctx);
 };
 
@@ -75,6 +88,39 @@ Canvas.prototype.onCanvasMousedown = function (e) {
     return _results;
 };
 
+Canvas.prototype.onCanvasMouseover = function (e) {
+    var graph, node, pos, _i, _len, _ref, _results;
+    pos = this.getPosition(e);
+    graph = this.graph;
+    _ref = graph.nodes;
+    _results = [];
+    for (_i in _ref) {
+        node = _ref[_i];
+        if (node.mouseon(pos)) {
+            this.binded = node;
+            node.binded = true;
+            break;
+        } else {
+            _results.push(void 0);
+        }
+    }
+    return _results;
+};
+
+Canvas.prototype.getNode = function(e){
+    var graph, node, pos, _i, _ref, _results;
+    pos = this.getPosition(e);
+    graph = this.graph;
+    _ref = graph.nodes;
+    _results = [];
+    for (_i in _ref) {
+        node = _ref[_i];
+        if (node.mouseon(pos)) {
+            return node;
+        } 
+    }
+}
+
 Canvas.prototype.onCanvasMousemove = function (e) {
     var pos;
     if (this.binded) {
@@ -116,9 +162,9 @@ Canvas.prototype.init = function (nodes, edges) {
     this.graph = graph;
     // this.ctx.on("refresh",function(){
     //     console.log(self);
-    //     self.draw();
     // })
-    return this.timer = setInterval(this.draw, 20);
+    self.draw();
+    // return this.timer = setInterval(this.draw, 20);
 
 }
 

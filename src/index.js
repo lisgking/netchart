@@ -5,7 +5,11 @@ import util from './util';
 
 
 var canvas = new Canvas();
-$("#maincanvas").mousemove(canvas.onCanvasMousemove).mousedown(canvas.onCanvasMousedown).dblclick(canvas.onDbClick).mouseup(canvas.onCanvasMouseup);
+$("#maincanvas").mousemove(canvas.onCanvasMousemove)
+                .mousedown(canvas.onCanvasMousedown)
+                .dblclick(canvas.onDbClick)
+                .mouseup(canvas.onCanvasMouseup)
+                .mouseover(canvas.onCanvasMouseover);
 // var id = canvas.changeGraph("twostar");
 
 var p = new Promise((resolve, reject) => {
