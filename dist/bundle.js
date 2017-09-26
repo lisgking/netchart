@@ -35583,7 +35583,18 @@ var node_types = {
 
 function Canvas() {
     var _this = this;
-
+    this.onCanvasMouseup = function (e) {
+        return Canvas.prototype.onCanvasMouseup.apply(_this, arguments);
+    };
+    this.onCanvasMousemove = function (e) {
+        return Canvas.prototype.onCanvasMousemove.apply(_this, arguments);
+    };
+    this.onCanvasMousedown = function (e) {
+        return Canvas.prototype.onCanvasMousedown.apply(_this, arguments);
+    };
+    this.onDbClick = function (e) {
+        return Canvas.prototype.onDbClick.apply(_this, arguments);
+    };
     this.draw = function () {
         return Canvas.prototype.draw.apply(_this, arguments);
     };
