@@ -107,7 +107,6 @@ Canvas.prototype.onDbClick = function (e) {
 
 
 Canvas.prototype.init = function (nodes, edges) {
-    debugger;
     var self = this;
     clearInterval(this.timer);
     var graph = new Graph(nodes);
@@ -119,7 +118,6 @@ Canvas.prototype.init = function (nodes, edges) {
     //     console.log(self);
     //     self.draw();
     // })
-    debugger;
     return this.timer = setInterval(this.draw, 20);
 
 }
