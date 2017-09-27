@@ -7,10 +7,10 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     watch: true,
-    resolve: {
-        alias: {
-            zrender$: "zrender/src/zrender.js",
-            zrender: "zrender/src"
-        }
-    }
+    // resolve: {
+    //     alias: {
+    //         echarts$: "echarts/src/echarts.js",
+    //         echarts: "echarts/src"
+    //     }
+    // }
 };

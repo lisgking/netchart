@@ -1,175 +1,104 @@
 
-import { Canvas } from './Canvas';
+import echarts from 'echarts';
 import $ from 'jquery';
-import util from './util';
+import _ from 'lodash';
+import {node_types} from './config';
 
+var main = document.getElementById('main');
+$(main).css({ "width": $("body").width(), "height": $("body").height() })
+console.log(echarts);
+var myChart = echarts.init(main);
+var url = "http://kg.graph.com/graph/graph/get-graph";
+// var url = "data/data.json";
+myChart.showLoading();
 
-var canvas = new Canvas();
-$("#maincanvas").mousemove(canvas.onCanvasMousemove)
-                .mousedown(canvas.onCanvasMousedown)
-                .dblclick(canvas.onDbClick)
-                .mouseup(canvas.onCanvasMouseup)
-                .mouseover(canvas.onCanvasMouseover);
-// var id = canvas.changeGraph("twostar");
+$.ajax({
+    type: "POST",
+    // type: "GET",
+    url: url,
+    data: { "notice_id": "4759092" },
+    dataType: "json",
+    success: function (msg) {
+        myChart.hideLoading();
+        var nodes = msg.result.nodes;
+        var links = msg.result.ships;
+        var categories = [];
+        var legendColor = [];
+        Object.keys(node_types).forEach(function(key){
+            var type = node_types[key];
+            debugger;
+            if(type.visible){
+                categories[type.category] = {
+                    name:type.type_name,
+                    value:type.category
+                }
+                legendColor[type.category] = type.itemStyle.normal.color;
+            }
+        });
+        categories = _.compact(categories);
+        legendColor = _.compact(legendColor);
+        // for (var i = 0; i < 9; i++) {
+        //     categories[i] = {
+        //         name: '类目' + i
+        //     };
+        // }
 
-var p = new Promise((resolve, reject) => {
-    var ajax = $.ajax({
-        type: "POST",
-        // url: 'data/entitys.json',
-        url: 'http://kg.graph.com/graph/graph/get-nodes',
-        data: { notice_id: "4759092" },
-        dataType: 'json'
-    });
-    ajax.done(function (msg) {
-        resolve(msg.result);
-    });
-});
-
-p.then(function(nodes){
-    var ajax = $.ajax({
-        type: "POST",
-        // url: 'data/relation.json',
-        url: 'http://kg.graph.com/graph/graph/get-relations',
-        data: { notice_id: "4759092" },
-        dataType: 'json'
-    });
-    ajax.done(function (msg) {
-        var edges = msg.result;
-        // var times = canvas.init(nodes,edges);
-        setRelation(nodes,edges);
-    });
-})
-
-
-function setRelation(nodes,edges){
-    var ajax = $.ajax({
-        type: "POST",
-        // url: 'data/relation.json',
-        url: 'http://kg.graph.com/graph/graph/get-entity-types',
-        dataType: 'json'
-    });
-    ajax.done(function(msg){
-        var node_typs = msg.result;
-        var new_edge = [];
-        Object.keys(node_typs).forEach(function(key){
-            var obj = node_typs[key];
-            if(obj.is_hide==="1")return;
-            //加入虚拟节点
-            nodes[key] = _.assignIn(v_node_types[obj.id],obj);
-
-            var v_nodes = util.getVirtualTypeList(nodes,obj.id);
-            console.log(edges);
+        nodes.forEach(function (node) {
+            node.name = node.node_name;
+            _.assignIn(node,node_types[node.node_type]);
             
-            v_nodes.forEach(function(n){
-                new_edge = new_edge.concat(util.formatEdgeData(edges,v_nodes,nodes,key));
-            });
+            // node.category = node.attributes.modularity_class;
         });
-        new_edge = new_edge.concat(edges);
-        console.log(new_edge);
-        Object.keys(nodes).map(function(key){
-            var node = nodes[key];
-            nodes[key] =  _.assignIn(node_types[node.entity_type_id],node);
-        });
-        var times = canvas.init(nodes,new_edge);
-    });
-}
+        console.log(nodes);
+        var option = {
+            title: {
+                text: '知识图谱',
+                subtext: 'Default layout',
+                top: 'top',
+                left: 'left'
+            },
+            tooltip: {},
+            color:legendColor,
+            legend: [{
+                // selectedMode: 'single',
+                data: categories.map(function (a) {
+                    return a.name;
+                })
+            }], 
+            animationDuration: 1500,
+            animationEasingUpdate: 'quinticInOut',
+            series: [{
+                name: '知识图谱',
+                type: 'graph',
+                layout: 'force',
+                data: nodes,
+                links: links,
+                edgeSymbol: ['', 'arrow'],
+                categories: categories,
+                focusNodeAdjacency: true,
+                roam: true,
+                label: {
+                    normal: {
+                        show:true,
+                        position: 'right',
+                        formatter: '{b}'
+                    }
+                },
+                lineStyle: {
+                    normal: {
+                        curveness: 0.1,
+                        color: 'source',
+                    },
 
-//虚拟节点结构
-var v_node_types = {
-    1:{
-        "identity":"",
-        "node_type":"virtual",
-        "node_name":"公司",
-        "virtual_type":2,
-        "color":"#3da1f9",
-        "radius":50,
-    },
-    2:{
-        "identity":"",
-        "node_type":"virtual",
-        "node_name":"人物",
-        "virtual_type":2,
-        "color":"#ebcc40",
-        "radius":38,
-    },
-    3:{
-        "identity":"",
-        "node_type":"virtual",
-        "node_name":"产品",
-        "virtual_type":2,
-        "radius":38,
-        "color":"#ff0600",
-    },
-    4:{
-        'identity':"",
-        "node_type":"virtual",
-        "node_name":"业务",
-        "virtual_type":2,
-        "color":"#ff9e00",
-        "radius":38,
-    },
-    5:{
-        "identity":"",
-        "node_type":"virtual",
-        "node_name":"文件",
-        "virtual_type":2,
-        "color":"#63c715",
-        "radius":38,
-    },
-    6:{
-        "identity":"",
-        "node_type":"virtual",
-        "node_name":"行业",
-        "virtual_type":2,
-        "color":"#63c715",
-        "radius":38,
-    }
-};
+                },
+                force: {
+                    repulsion: 650,
+                    gravity: 0.25,
+                    edgeLength: [100, 150]
+                },
+            }]
+        };
 
-var node_types = {
-    1:{
-        "identity":"",
-        "node_type":"virtual",
-        "node_name":"公司",
-        "virtual_type":2,
-        "color":"#3da1f9",
-        "radius":50,
-    },
-    2:{
-        "identity":"",
-        "color":"#ebcc40",
-        "radius":30,
-    },
-    3:{
-        "identity":"",
-        "node_type":"virtual",
-        "node_name":"产品",
-        "virtual_type":2,
-        "radius":30,
-        "color":"#ff0600",
-    },
-    4:{
-        'identity':"",
-        "node_type":"virtual",
-        "node_name":"业务",
-        "virtual_type":2,
-        "color":"#ff9e00",
-        "radius":30,
-    },
-    5:{
-        "identity":"",
-        "node_type":"virtual",
-        "node_name":"文件",
-        "virtual_type":2,
-        "color":"#63c715",
-        "radius":30,
-    },
-    6:{
-        "identity":"",
-        "node_type":"virtual",
-        "node_name":"行业",
-        "virtual_type":2,
-        "color":"#63c715",
-        "radius":30,
+        myChart.setOption(option);
     }
-};
+});

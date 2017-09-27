@@ -1,0 +1,78 @@
+{
+    "nodes":{
+        "1": {
+            "node_type": "1-1",
+            "node_type_name": "机构",
+            "node_name": "深圳市飞马国际供应链股份有限公司",
+            "id": 0
+        },
+        "2": {
+            "node_type": "4",
+            "node_type_name": "关系",
+            "node_name": "圳市福田区深南大道7008号阳光高尔夫大厦26楼",
+            "id": 1
+        },
+        "3": {
+            "node_type": "1-1",
+            "node_type_name": "机构",
+            "node_name": "飞马投资控股有限公司",
+            "id": 2
+        },
+        "4": {
+            "node_type": "4",
+            "node_type_name": "关系",
+            "node_name": "50.06%",
+            "id": 3
+        },
+        "5": {
+            "node_type": "1-2",
+            "node_type_name": "人物",
+            "node_name": "费益昭",
+            "id": 4
+        },
+        "6": {
+            "node_type": "4",
+            "node_type_name": "关系",
+            "node_name": "董事会秘书",
+            "id": 5
+        }
+    },
+    "ships":[
+        {
+            "id": 0,
+            "source": 1,
+            "target": 2,
+            "relation_name": ""
+        },
+        {
+            "id": 1,
+            "source": 1,
+            "target": 3,
+            "relation_name": "圳市福田区深南大道7008号阳光高尔夫大厦26楼"
+        },
+        {
+            "id": 2,
+            "source": 2,
+            "target": 4,
+            "relation_name": "办公地址"
+        },
+        {
+            "id": 3,
+            "source": 2,
+            "target": 5,
+            "relation_name": "-8899"
+        },
+        {
+            "id": 4,
+            "source": 1,
+            "target": 6,
+            "relation_name": ""
+        },
+        {
+            "id": 5,
+            "source": 3,
+            "target": 4,
+            "relation_name": "股东持股"
+        }
+    ]
+}
